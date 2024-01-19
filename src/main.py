@@ -68,7 +68,7 @@ def loadCourses():
     print("Courses loaded. Creating .ics file...")
 
 def createCalendar():
-    with open('./output/calendar.ics', 'w') as file:
+    with open('../output/calendar.ics', 'w') as file:
         file.write("BEGIN:VCALENDAR\n")
         file.write("VERSION:2.0\n")
         file.write("PRODID:-//Colin Maggard//MadCalendar//EN\n") 
