@@ -27,6 +27,7 @@ driver.get("https://go.wisc.edu/76k189")
 wait = WebDriverWait(driver, 10)
 timeout = 20
 
+print("Welcome to mad_calendar! This is a tool to import your class schedule into Google Calendar.")
 while True:
     username = str(input("What is your username? "))
     password = str(input("What is your password? "))

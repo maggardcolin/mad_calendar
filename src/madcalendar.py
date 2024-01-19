@@ -1,6 +1,6 @@
 import re, csv
 from course import Course
-from conversions import *
+from conversions import shorten_day, time_code, next_matching_day, month_to_number
 
 def loadCourses(driver):
     html = driver.page_source
@@ -60,7 +60,7 @@ def createCalendar(classes):
     with open('./output/calendar.ics', 'w') as file:
         file.write("BEGIN:VCALENDAR\n")
         file.write("VERSION:2.0\n")
-        file.write("PRODID:-//Colin Maggard//MadCalendar//EN\n") 
+        file.write("PRODID:-//Colin Maggard//mad_calendar//EN\n") 
         file.write("CALSCALE:GREGORIAN\n")
         for course in classes:
             file.write("BEGIN:VEVENT\n")
@@ -85,4 +85,5 @@ def createCalendar(classes):
             file.write("TRANSP:OPAQUE\n")
             file.write("END:VEVENT\n")
         file.write("END:VCALENDAR\n")
-        print("Schedule uploaded to .ics file. Upload this to Google Calendar to see your classes. Go Badgers!")
+        print("Schedule uploaded to .ics file.\nUpload this to Google Calendar or other calendars that support .ics format to see your classes. Go Badgers!")
+        print("Google Calendar: https://calendar.google.com/calendar/u/0/r/settings/export")
