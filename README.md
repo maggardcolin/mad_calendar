@@ -7,6 +7,10 @@ Python tool to access UW-Madison Course Schedule app and create an .ics file tha
 - This file can be uploaded into the calendar app of your choice, provided it supports iCal format.
 
 ## Usage
+### Prerequisites
+- Selenium
+- Python3
+## How to use
 - Download the source code from the GitHub repository, then run main.py in the src folder. Your .ics file will be generated in the "output" folder.
 
 ### I need testers for this program, please let me know if you run into any issues with it.
