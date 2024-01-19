@@ -2,7 +2,7 @@ import re, csv
 from course import Course
 from conversions import shorten_day, time_code, next_matching_day, month_to_number
 
-def loadCourses(driver):
+def load_courses(driver):
     html = driver.page_source
     courses = []
     pattern = r'(<div class="tt-activity".*?>.*?<\/div>\s*<\/div>\s*<\/div>)|(role="rowheader">(Sun|Mon|Tue|Wed|Thu|Fri|Sat))'
@@ -56,7 +56,7 @@ def loadCourses(driver):
     print("Courses loaded. Creating .ics file...")
     return courses
 
-def createCalendar(classes):
+def create_calendar(classes):
     with open('./output/calendar.ics', 'w') as file:
         file.write("BEGIN:VCALENDAR\n")
         file.write("VERSION:2.0\n")

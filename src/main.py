@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
-from madcalendar import loadCourses, createCalendar
+from mad_calendar import load_courses, create_calendar
 
 headless = True
 
@@ -62,8 +62,8 @@ try:
         EC.visibility_of_element_located((By.ID, "portalPageBody"))
     )
     print("Schedule page has loaded successfully. Loading courses...")
-    courses = loadCourses(driver)
-    createCalendar(courses)
+    courses = load_courses(driver)
+    create_calendar(courses)
 except TimeoutException:
     print("Timed out waiting for the schedule page to load.")
     driver.quit()
