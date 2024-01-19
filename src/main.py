@@ -68,7 +68,7 @@ def loadCourses():
     print("Courses loaded. Creating .ics file...")
 
 def createCalendar():
-    with open('../output/calendar.ics', 'w') as file:
+    with open('./output/calendar.ics', 'w') as file:
         file.write("BEGIN:VCALENDAR\n")
         file.write("VERSION:2.0\n")
         file.write("PRODID:-//Colin Maggard//MadCalendar//EN\n") 
@@ -101,6 +101,7 @@ def createCalendar():
 if headless:
     chrome_options = Options()
     chrome_options.add_argument("--headless")
+    chrome_options.add_argument('log-level=3')
     driver = webdriver.Chrome(options=chrome_options)
 else:
     driver = webdriver.Chrome()
@@ -133,7 +134,7 @@ try:
     element_on_next_page = WebDriverWait(driver, timeout).until(
         EC.visibility_of_element_located((By.ID, "trust-browser-button"))
     )
-    print("Duo Mobile request approved.")
+    print("Duo Mobile request approved. Loading Course Schedule page...")
     trust_button = driver.find_element(By.ID, "trust-browser-button")
     trust_button.click()
 except TimeoutException:
