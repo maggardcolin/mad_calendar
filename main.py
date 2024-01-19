@@ -1,4 +1,3 @@
-# hours logged: 7:00 PM - 3:00 AM 7 hours
 import re, csv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -17,7 +16,6 @@ def fill_form_value(element_id, value):
     element.send_keys(value)    
 
 def loadCourses():
-    print("Loading courses...")
     html = driver.page_source
     pattern = r'(<div class="tt-activity".*?>.*?<\/div>\s*<\/div>\s*<\/div>)|(role="rowheader">(Sun|Mon|Tue|Wed|Thu|Fri|Sat))'
     match_results = re.finditer(pattern, html, re.DOTALL)
@@ -67,7 +65,7 @@ def loadCourses():
                 classes.append(course)
             else:
                 already_done = False
-    print("Courses loaded.")
+    print("Courses loaded. Creating .ics file...")
 
 def createCalendar():
     with open('./output/calendar.ics', 'w') as file:
@@ -98,7 +96,7 @@ def createCalendar():
             file.write("TRANSP:OPAQUE\n")
             file.write("END:VEVENT\n")
         file.write("END:VCALENDAR\n")
-        print("Schedule made. Go Badgers!")
+        print("Schedule uploaded to .ics file. Upload this to Google Calendar to see your classes. Go Badgers!")
 
 if headless:
     chrome_options = Options()
@@ -125,7 +123,7 @@ while True:
         element_on_next_page = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.ID, "auth-view-wrapper"))
         )
-        print("Username and password correct.")
+        print("Username and password correct. Sending Duo Push...")
         break
     except TimeoutException:
         print("Wrong username or password, try again.")
@@ -135,7 +133,7 @@ try:
     element_on_next_page = WebDriverWait(driver, timeout).until(
         EC.visibility_of_element_located((By.ID, "trust-browser-button"))
     )
-    print("Duo Mobile request accepted.")
+    print("Duo Mobile request approved.")
     trust_button = driver.find_element(By.ID, "trust-browser-button")
     trust_button.click()
 except TimeoutException:
@@ -147,7 +145,7 @@ try:
     element_on_next_page = WebDriverWait(driver, timeout).until(
         EC.visibility_of_element_located((By.ID, "portalPageBody"))
     )
-    print("Schedule page has loaded successfully.")
+    print("Schedule page has loaded successfully. Loading courses...")
     loadCourses()
     createCalendar()
 except TimeoutException:
