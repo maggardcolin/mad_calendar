@@ -7,6 +7,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from mad_calendar import load_courses, create_calendar
+import os
 
 headless = True
 
@@ -31,6 +32,7 @@ print("Welcome to mad_calendar! This is a tool to import your class schedule int
 while True:
     username = str(input("What is your username? "))
     password = str(input("What is your password? "))
+    os.system('CLS')
     fill_form_value("j_username", username)
     fill_form_value("j_password", password)
     submit_button = driver.find_element(By.NAME, "_eventId_proceed")
